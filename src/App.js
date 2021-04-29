@@ -1,5 +1,6 @@
 import "./styles.css";
 import { useQuery, gql } from "@apollo/client";
+import PageLayout from "./components/PageLayout";
 
 const ALL_LINKS = gql`
   query GetAllLinks {
@@ -18,16 +19,20 @@ export default function App() {
   if (err) return <p>Error!</p>;
 
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      {data.allLinks.map((link) => {
-        return (
-          <p key={link.id}>
-            {link.url} --- {link.slug}
-          </p>
-        );
-      })}
-    </div>
+    <PageLayout>
+      <div className="container">
+        <div className="inner-content">
+          <h1>Hello CodeSandbox</h1>
+          <h2>Start editing to see some magic happen!</h2>
+          {data.allLinks.map((link) => {
+            return (
+              <p key={link.id}>
+                {link.url} --- {link.slug}
+              </p>
+            );
+          })}
+        </div>
+      </div>
+    </PageLayout>
   );
 }
