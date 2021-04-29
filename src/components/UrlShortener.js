@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 import useForm from "../hooks/useForm";
 import { useMutation, gql } from "@apollo/client";
 
@@ -17,7 +17,7 @@ const UrlShortenerStyles = styled.div`
   color: white;
 `;
 
-const UrlShortener = () => {
+const UrlShortener = ({ refetch }) => {
   const { inputs, handleChange, clearForm } = useForm();
   const [createLink, { data, loading }] = useMutation(SHORTEN_URL_MUTATION);
 
@@ -29,6 +29,7 @@ const UrlShortener = () => {
           const linkData = await createLink({
             variables: { url: inputs.url, slug: inputs.slug }
           });
+          refetch();
           console.log(linkData);
         }}
       >

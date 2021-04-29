@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import PageLayout from "./components/PageLayout";
 import Hero from "./components/Hero";
 import UrlShortener from "./components/UrlShortener";
+import ShortenedResults from "./components/ShortenedResults";
 
 const ALL_LINKS = gql`
   query GetAllLinks {
@@ -15,7 +16,7 @@ const ALL_LINKS = gql`
 `;
 
 export default function App() {
-  const { loading, err, data } = useQuery(ALL_LINKS);
+  const { loading, err, data, refetch } = useQuery(ALL_LINKS);
   console.log(JSON.stringify(data));
   if (loading) return <p>Loading...</p>;
   if (err) return <p>Error!</p>;
@@ -25,14 +26,8 @@ export default function App() {
       <div className="container">
         <div className="inner-content">
           <Hero />
-          <UrlShortener />
-          {data.allLinks.map((link) => {
-            return (
-              <p key={link.id}>
-                {link.url} --- {link.slug}
-              </p>
-            );
-          })}
+          <UrlShortener refetch={refetch} />
+          <ShortenedResults data={data} />
         </div>
       </div>
     </PageLayout>
