@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
   :root {
     --black: #393939;
     --orange: #f07f0e;
+    --light-orange: #f99633;
     --light-grey: #f0efed;
 
   }
@@ -25,6 +26,10 @@ const GlobalStyles = createGlobalStyle`
     border: 0;
     border-radius: 5px;
     background-color: var(--orange);
+    &:hover {
+      cursor: pointer;
+      background: var(--light-orange);
+    }
   }
 
   input {

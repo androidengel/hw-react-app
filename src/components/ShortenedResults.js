@@ -24,12 +24,15 @@ const Result = styled.div`
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  & a {
+    margin: auto 0;
+  }
 `;
 
 const ShortenedResults = ({ data }) => {
   return (
     <ShortenedResultsStyles>
-      <ResultsList>
+      <ResultsList className="inner-content">
         {data.allLinks.map((link) => {
           const shortenedUrl = `https://localhost:3000/${link.slug}`;
           return (

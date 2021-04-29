@@ -22,9 +22,9 @@ export default function App() {
   if (err) return <p>Error!</p>;
 
   return (
-    <PageLayout>
-      <div className="container">
-        <div className="inner-content">
+    <PageLayout className="container">
+      <div>
+        <div>
           <Hero />
           <UrlShortener refetch={refetch} />
           <ShortenedResults data={data} />
