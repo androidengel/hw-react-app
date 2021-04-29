@@ -1,6 +1,8 @@
 import "./styles.css";
 import { useQuery, gql } from "@apollo/client";
 import PageLayout from "./components/PageLayout";
+import Hero from "./components/Hero";
+import UrlShortener from "./components/UrlShortener";
 
 const ALL_LINKS = gql`
   query GetAllLinks {
@@ -22,8 +24,8 @@ export default function App() {
     <PageLayout>
       <div className="container">
         <div className="inner-content">
-          <h1>Hello CodeSandbox</h1>
-          <h2>Start editing to see some magic happen!</h2>
+          <Hero />
+          <UrlShortener />
           {data.allLinks.map((link) => {
             return (
               <p key={link.id}>
